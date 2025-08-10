@@ -91,13 +91,13 @@ public class AccountScreen extends Screen {
         super.render(context, mouseX, mouseY, delta);
         this.accountListWidget.render(context, mouseX, mouseY, delta);
 
-        context.drawCenteredTextWithShadow(this.textRenderer, AccountWorker.isRunning() ? WORKING : ACCOUNT_LIST, this.width / 2 + LAYOUT_ENTRY_X / 2, LAYOUT_VERTICAL_SPACING, 0xFFFFFF);
-        context.drawCenteredTextWithShadow(this.textRenderer, I18N.TRANSLATOR.translate(AccountManager.getCurrentAccount()), this.width / 2 + LAYOUT_ENTRY_X / 2, this.height - LAYOUT_VERTICAL_SPACING, 0xFFFFFF);
+        context.drawCenteredTextWithShadow(this.textRenderer, AccountWorker.isRunning() ? WORKING : ACCOUNT_LIST, this.width / 2 + LAYOUT_ENTRY_X / 2, LAYOUT_VERTICAL_SPACING, 0xFFFFFFFF);
+        context.drawCenteredTextWithShadow(this.textRenderer, I18N.TRANSLATOR.translate(AccountManager.getCurrentAccount()), this.width / 2 + LAYOUT_ENTRY_X / 2, this.height - LAYOUT_VERTICAL_SPACING, 0xFFFFFFFF);
 
         context.drawCenteredTextWithShadow(
                 this.textRenderer, Text.translatable("as.account.general.add_account"),
                 LAYOUT_TOOL_BAR_TEXT_CENTER_X, LAYOUT_TOOL_BAR_ADD_ACCOUNT_Y,
-                0xFFFFFF
+                0xFFFFFFFF
         );
     }
 

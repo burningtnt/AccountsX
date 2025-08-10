@@ -54,7 +54,7 @@ public class AccountListWidget extends AlwaysSelectedEntryListWidget<AccountList
                         AccountManager.switchAccount(account, session);
 
                         super.setSelected(entry);
-                        client.getNarratorManager().narrate((Text.translatable("narrator.select", entry.account.getAccountStorage().getPlayerName())).getString());
+                        client.getNarratorManager().narrate(Text.of((Text.translatable("narrator.select", entry.account.getAccountStorage().getPlayerName())).getString()));
                     });
                 });
             }
@@ -89,19 +89,19 @@ public class AccountListWidget extends AlwaysSelectedEntryListWidget<AccountList
 
         @Override
         public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-            context.drawText(client.textRenderer, this.account.getAccountStorage().getPlayerName(), x + 32 + 3, y + 1, 0xFFFFFF, false);
-            context.drawText(client.textRenderer, I18N.TRANSLATOR.translate(this.account.getAccountType()), x + 32 + 3, y + 1 + 9, 0xFFFFFF, false);
-            context.drawText(client.textRenderer, I18N.TRANSLATOR.translate(this.account.getAccountStorage().getState()), x + 32 + 3, y + 1 + 18, 0xFFFFFF, false);
+            context.drawText(client.textRenderer, this.account.getAccountStorage().getPlayerName(), x + 32 + 3, y + 1, 0xFFFFFFFF, false);
+            context.drawText(client.textRenderer, I18N.TRANSLATOR.translate(this.account.getAccountType()), x + 32 + 3, y + 1 + 9, 0xFFFFFFFF, false);
+            context.drawText(client.textRenderer, I18N.TRANSLATOR.translate(this.account.getAccountStorage().getState()), x + 32 + 3, y + 1 + 18, 0xFFFFFFFF, false);
 
             if (this.account.getAccountType() != AccountType.ENV_DEFAULT) {
                 if (index > 1) {
-                    context.drawText(client.textRenderer, ACTION_UP, (int) (x + entryWidth - 1.5 * client.textRenderer.getWidth(ACTION_UP)), y + 1 + 5 - client.textRenderer.fontHeight / 2, 0xFFFFFF, false);
+                    context.drawText(client.textRenderer, ACTION_UP, (int) (x + entryWidth - 1.5 * client.textRenderer.getWidth(ACTION_UP)), y + 1 + 5 - client.textRenderer.fontHeight / 2, 0xFFFFFFFF, false);
                 }
 
-                context.drawText(client.textRenderer, ACTION_DELETE, (int) (x + entryWidth - 1.5 * client.textRenderer.getWidth(ACTION_DELETE)), y + 1 + 15 - client.textRenderer.fontHeight / 2, 0xFFFFFF, false);
+                context.drawText(client.textRenderer, ACTION_DELETE, (int) (x + entryWidth - 1.5 * client.textRenderer.getWidth(ACTION_DELETE)), y + 1 + 15 - client.textRenderer.fontHeight / 2, 0xFFFFFFFF, false);
 
                 if (index < getEntryCount() - 1) {
-                    context.drawText(client.textRenderer, ACTION_DOWN, (int) (x + entryWidth - 1.5 * client.textRenderer.getWidth(ACTION_DOWN)), y + 1 + 25 - client.textRenderer.fontHeight / 2, 0xFFFFFF, false);
+                    context.drawText(client.textRenderer, ACTION_DOWN, (int) (x + entryWidth - 1.5 * client.textRenderer.getWidth(ACTION_DOWN)), y + 1 + 25 - client.textRenderer.fontHeight / 2, 0xFFFFFFFF, false);
                 }
             }
         }

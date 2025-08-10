@@ -1,6 +1,5 @@
 package net.burningtnt.accountsx.adapters.mc.ui.impl;
 
-import net.burningtnt.accountsx.adapters.mc.mixins.mixins.DrawContextAccessor;
 import net.burningtnt.accountsx.core.AccountsX;
 import net.burningtnt.accountsx.core.accounts.AccountProvider;
 import net.burningtnt.accountsx.core.accounts.BaseAccount;
@@ -11,7 +10,6 @@ import net.burningtnt.accountsx.core.manager.AccountWorker;
 import net.burningtnt.accountsx.adapters.mc.ui.AccountScreen;
 import net.burningtnt.accountsx.adapters.mc.ui.ButtonWidget;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.screen.Screen;
@@ -168,25 +166,26 @@ public final class UIScreenImpl implements UIScreen {
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
             assert this.client != null;
 
-            super.renderBackground(context, mouseX, mouseY, delta);
             super.render(context, mouseX, mouseY, delta);
 
             int textTop = this.height / 2 - (UIScreenImpl.this.inputs.size() + 1) * 25 / 2 + 5;
             int textLeft = this.width / 2 - 170;
 
-            client.textRenderer.draw(
+            context.drawTextWithShadow(
+                    client.textRenderer,
                     this.title,
-                    (float) this.width / 2 - (float) client.textRenderer.getWidth(this.title) / 2, textTop - 40,
-                    0xFFFFFF, true,
-                    context.getMatrices().peek().getPositionMatrix(), ((DrawContextAccessor) context).getVertexConsumerProvider(), TextRenderer.TextLayerType.NORMAL,
-                    0, 0xF000F0
+                    this.width / 2 - client.textRenderer.getWidth(this.title) / 2,
+                    textTop - 40,
+                    0xFFFFFFFF
             );
 
             for (ValuedWidget<TextFieldWidget> widget : UIScreenImpl.this.inputs.values()) {
-                client.textRenderer.draw(
-                        Text.translatable(widget.description), textLeft, textTop, 0xFFFFFF, true,
-                        context.getMatrices().peek().getPositionMatrix(), ((DrawContextAccessor) context).getVertexConsumerProvider(), TextRenderer.TextLayerType.NORMAL,
-                        0, 0xF000F0
+                context.drawTextWithShadow(
+                        client.textRenderer,
+                        Text.translatable(widget.description),
+                        textLeft,
+                        textTop,
+                        0xFFFFFFFF
                 );
 
                 textTop += 25;
